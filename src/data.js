@@ -15,7 +15,7 @@ export const NAV = [
   { label: 'Aksesoris', to: '/produk?cat=Aksesoris' },
   { label: 'Semua Produk', to: '/produk' },
   { label: 'Bandingkan', to: '/bandingkan' },
-  { label: 'Lokasi Toko', to: '/#lokasi' },
+  { label: 'Lokasi Toko', to: '/lokasi-toko' },
 ]
 
 export const CATEGORY_TILES = [
@@ -182,14 +182,14 @@ export const FEATURED = [
 
 export const GROUP_STORES = [
   { name: 'Complete Selular', img: `${UP}/2023/10/CS.png`, url: 'https://www.instagram.com/officialcompleteselular/' },
-  { name: 'Pertemuan Cellular', img: `${UP}/2023/10/PC-100x100.png`, url: 'https://www.instagram.com/pertemuancellular.id/' },
-  { name: 'Jaya Baru Seluler', img: `${UP}/2023/10/JB-100x100.png`, url: 'https://www.instagram.com/jayabaru_seluler/' },
-  { name: 'Sinar Mas Seluler', img: `${UP}/2023/10/SMS-1-100x100.png`, url: 'https://www.instagram.com/sinarmassellulerofficial/' },
-  { name: 'Korcell Store', img: `${UP}/2023/10/KC-100x100.png`, url: 'https://www.instagram.com/korcellstore/' },
+  { name: 'Pertemuan Cellular', img: `${UP}/2023/10/PC.png`, url: 'https://www.instagram.com/pertemuancellular.id/' },
+  { name: 'Jaya Baru Seluler', img: `${UP}/2023/10/JB.png`, url: 'https://www.instagram.com/jayabaru_seluler/' },
+  { name: 'Sinar Mas Seluler', img: `${UP}/2023/10/SMS-1.png`, url: 'https://www.instagram.com/sinarmassellulerofficial/' },
+  { name: 'Korcell Store', img: `${UP}/2023/10/KC.png`, url: 'https://www.instagram.com/korcellstore/' },
 ]
 
-export const MAP_EMBED =
-  'https://www.google.com/maps/d/embed?mid=1lmPXV6TVFJ3C70jHFVBu2varDlUWmk8&ehbc=2E312F&noprof=1'
+// Dari footer "Hubungi Kami" di unboxing.id.
+export const HEAD_OFFICE = 'Jl. Pantai Maju Bersama RGII No. 27–28, Pantai Indah Kapuk, Jakarta Utara 14460'
 
 export const SOCIALS = [
   { name: 'Instagram', url: 'https://www.instagram.com/unboxingstoreid/' },

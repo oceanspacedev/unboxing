@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import ProductList from './pages/ProductList'
 import ProductDetail from './pages/ProductDetail'
 import Compare from './pages/Compare'
+import StoreLocations from './pages/StoreLocations'
 import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="produk" element={<ProductList />} />
         <Route path="produk/:slug" element={<ProductDetail />} />
         <Route path="bandingkan" element={<Compare />} />
+        <Route path="lokasi-toko" element={<StoreLocations />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

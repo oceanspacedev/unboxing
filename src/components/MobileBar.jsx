@@ -7,7 +7,7 @@ const ITEMS = [
   { label: 'Beranda', to: '/', Icon: Home, end: true },
   { label: 'Produk', to: '/produk', Icon: ShoppingBag },
   { label: 'Bandingkan', to: '/bandingkan', Icon: GitCompareArrows },
-  { label: 'Toko', to: '/#lokasi', Icon: MapPin },
+  { label: 'Toko', to: '/lokasi-toko', Icon: MapPin },
 ]
 
 export default function MobileBar() {

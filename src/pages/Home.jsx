@@ -4,7 +4,6 @@ import CategoryTiles from '../components/CategoryTiles'
 import ProductRow from '../components/ProductRow'
 import Benefits from '../components/Benefits'
 import BrandGrid from '../components/BrandGrid'
-import StoreLocator from '../components/StoreLocator'
 import { FEATURED } from '../data'
 import { useCatalog } from '../lib/catalog'
 import { useTitle } from '../lib/useTitle'
@@ -35,7 +34,6 @@ export default function Home() {
       <Benefits />
       <ProductRow title="Laptop" to="/produk?cat=Laptops" products={rows.laptops} loading={loading} />
       <BrandGrid />
-      <StoreLocator />
     </>
   )
 }
