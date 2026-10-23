@@ -76,7 +76,11 @@ export default function Header() {
       <nav className="subnav" aria-label="Kategori">
         <div className="container subnav__list">
           {NAV.map((n) => (
-            <Link key={n.to} to={n.to} className={isActive(n.to, location) ? 'is-active' : ''}>
+            <Link
+              key={n.to}
+              to={n.to}
+              className={[isActive(n.to, location) && 'is-active', n.desktopOnly && 'desktop-only'].filter(Boolean).join(' ')}
+            >
               {n.label}
             </Link>
           ))}

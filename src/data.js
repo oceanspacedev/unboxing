@@ -14,7 +14,8 @@ export const NAV = [
   { label: 'Laptop', to: '/produk?cat=Laptops' },
   { label: 'Aksesoris', to: '/produk?cat=Aksesoris' },
   { label: 'Semua Produk', to: '/produk' },
-  { label: 'Bandingkan', to: '/bandingkan' },
+  // Di HP sudah ada di bar navigasi bawah, jadi disembunyikan dari menu ini.
+  { label: 'Bandingkan', to: '/bandingkan', desktopOnly: true },
   { label: 'Lokasi Toko', to: '/lokasi-toko' },
 ]
 

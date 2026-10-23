@@ -578,9 +578,9 @@ h1, h2, h3 { margin: 0; line-height: 1.25; }
   .search { flex: 1; }
   .header__logo img { height: 15px; }
   .search { height: 38px; }
-  .header__actions { gap: 0; }
-  .header__icon-label, .header__actions a[aria-label="Hubungi CS"] { display: none; }
-  .header__icon .count-badge { right: -8px; }
+  /* Bandingkan & Hubungi CS sudah ada di bar bawah / tombol WA melayang. */
+  .header__actions, .subnav__list .desktop-only { display: none; }
+  .search { margin-left: 4px; }
   .subnav__list { gap: 20px; }
   .subnav__list a { font-size: 13.5px; }
 
