@@ -1,10 +1,14 @@
 import { Link, useParams } from 'react-router'
-import { Check, ChevronRight, GitCompareArrows, MessageCircle, SearchX } from 'lucide-react'
+import {
+  AppWindow, Camera, Check, ChevronRight, Cpu, GitCompareArrows, MemoryStick, MessageCircle, MonitorSmartphone, SearchX,
+} from 'lucide-react'
 import ProductRow from '../components/ProductRow'
-import { categoryLabel, formatRupiah, shortSpecs, specRows, statusLabel, useCatalog } from '../lib/catalog'
+import { categoryLabel, formatRupiah, keySpecs, specRows, statusLabel, useCatalog } from '../lib/catalog'
 import { useCompare } from '../lib/compare'
 import { useTitle } from '../lib/useTitle'
 import { waLinkFor } from '../data'
+
+const KEY_ICONS = { cpu: Cpu, display: MonitorSmartphone, camera: Camera, memory: MemoryStick, os: AppWindow }
 
 function related(products, product) {
   const t = new Date(product.date).getTime()
@@ -40,6 +44,7 @@ export default function ProductDetail() {
   const selected = has(product.id)
   const availability = statusLabel(product.status)
   const catLink = `/produk?cat=${encodeURIComponent(product.category)}`
+  const keys = keySpecs(product)
 
   return (
     <div className="container detail">
@@ -55,16 +60,26 @@ export default function ProductDetail() {
         </div>
 
         <div className="detail__info">
-          <Link to={`/produk?brand=${encodeURIComponent(product.brand)}`} className="detail__brand">{product.brand}</Link>
           <h1>{product.name}</h1>
           <p className={`detail__price ${product.price ? '' : 'is-empty'}`}>
             {formatRupiah(product.price) ?? 'Tanya harga'}
             {availability && <span className="badge badge--muted">{availability}</span>}
           </p>
 
-          <ul className="detail__highlights">
-            {shortSpecs(product).map((s) => <li key={s}>{s}</li>)}
-          </ul>
+          {keys.length > 0 && (
+            <ul className="key-specs">
+              {/* Ikon menggantikan label; label tetap ada untuk pembaca layar & tooltip. */}
+              {keys.map((k) => {
+                const Icon = KEY_ICONS[k.key]
+                return (
+                  <li key={k.key} title={`${k.label}: ${k.value}`}>
+                    <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
+                    <span><span className="sr-only">{k.label}: </span>{k.value}</span>
+                  </li>
+                )
+              })}
+            </ul>
+          )}
 
           <div className="detail__actions">
             <a className="btn btn--primary btn--lg" href={waLinkFor(product.name)} target="_blank" rel="noreferrer">
@@ -75,7 +90,6 @@ export default function ProductDetail() {
               Bandingkan
             </button>
           </div>
-          <p className="detail__note">Harga dapat berbeda di tiap toko.</p>
         </div>
       </div>
 

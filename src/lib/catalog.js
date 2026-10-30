@@ -69,7 +69,11 @@ export const SPEC_ROWS = [
   { label: 'Bluetooth', get: (s) => s.Bluetooth },
 ]
 
-const clean = (v) => (v && v.trim() && v.trim() !== '-' ? v.trim() : null)
+const clean = (v) => {
+  const t = v?.trim()
+  // "-", "N/A", "N/A, N/A" = tidak ada data
+  return t && t !== '-' && !/^(n\/?a[\s,]*)+$/i.test(t) ? t : null
+}
 
 export function specRows(product) {
   return SPEC_ROWS.map((r) => ({ label: r.label, value: clean(r.get(product.specs)) })).filter((r) => r.value)
@@ -78,6 +82,24 @@ export function specRows(product) {
 export function shortSpecs(product) {
   return [product.specs.RAM && `RAM ${product.specs.RAM}`, product.specs.Storage?.split(' ').slice(0, 2).join(' ')]
     .filter(Boolean)
+}
+
+// Ringkasan 4 spesifikasi utama untuk halaman detail ("pOLED · 120Hz", "50 MP", …).
+export function keySpecs(product) {
+  const s = product.specs
+  const firstPart = (v) => clean(v)?.split(/,|\(/)[0].trim()
+  const memory = [firstPart(s.RAM), clean(s.Storage)?.split(' ').slice(0, 2).join(' ')].filter(Boolean).join(' · ')
+  const display = clean(s.Display) && [firstPart(s.Display), /\d+\s?Hz/i.exec(s.Display)?.[0]].filter(Boolean).join(' · ')
+  // "Intel® Core™ i5-11400H Processor 2.7 GHz (…)" → "Intel Core i5-11400H"
+  const processor = clean(s.Processor)?.replace(/[®™?]/g, '').replace(/\s*processor\b.*$/i, '').split('(')[0].trim()
+
+  return [
+    { key: 'cpu', label: 'Prosesor', value: firstPart(s.CPU) || processor },
+    { key: 'display', label: 'Layar', value: display },
+    { key: 'camera', label: 'Kamera', value: /\d+(\.\d+)?\s?MP/i.exec(s.Camera ?? '')?.[0] },
+    { key: 'memory', label: 'Memori', value: memory },
+    { key: 'os', label: 'Sistem', value: firstPart(s.OS) },
+  ].filter((k) => k.value).slice(0, 4)
 }
 
 const rupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 })
